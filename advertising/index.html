@@ -164,7 +164,7 @@
 
   <section style="padding:calc(1*28px) 0 calc(1.5*28px);">
     <span class="kicker" style="font-size:23px;">Recent Work</span>
-    <video ref="{{ playlistRef }}" src="{{ currentClip }}" controls="true" playsinline="true" onEnded="{{ advanceClip }}" style="display:block; width:100%; aspect-ratio:16/9; background:#e4e2df;"></video>
+    <video ref="{{ playlistRef }}" src="{{ currentClip }}" controls="true" playsinline="true" controlsList="nodownload noremoteplayback" disablePictureInPicture="true" onContextMenu="{{ blockContextMenu }}" onEnded="{{ advanceClip }}" style="display:block; width:100%; aspect-ratio:16/9; background:#e4e2df;"></video>
   </section>
 
   <hr style="height:2px; border:0; margin:0; background:var(--color-divider);" />
@@ -228,7 +228,7 @@
   <p style="font-size:13px; margin:0; color:color-mix(in srgb, var(--color-text) 60%, transparent);">© 2026 Red Spider Studios Advertising. A division of Red Spider Studios.</p>
   <div style="display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
     <a href="/privacy/" style="font-size:13px; font-weight:600;">Privacy Policy</a>
-    <a href="../" style="font-size:13px;">← Back to Red Spider Studios</a>
+    <a href="../" style="font-size:13px; color:var(--color-accent-700); font-weight:600;">← Back to Red Spider Studios</a>
   </div>
 </footer>
 
@@ -290,6 +290,7 @@ class Component extends DCLogic {
 
   renderVals() {
     return {
+      blockContextMenu: (e) => e.preventDefault(),
       statusMessage: this.state.statusMessage,
       playlistRef: this.playlistRef,
       playlistClips: this.clips,
