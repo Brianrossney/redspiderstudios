@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journal — Previz, MetaHumans &amp; Unreal Engine Notes | Red Spider Studios</title>
+<meta name="description" content="Working notes on previsualization, MetaHumans, facial capture and building production pipelines in Unreal Engine, from Red Spider Studios' Brian Rossney.">
+<link rel="canonical" href="https://redspiderstudios.com/journal/">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Journal — Previz, MetaHumans &amp; Unreal Engine Notes | Red Spider Studios">
+<meta property="og:description" content="Working notes on previsualization, MetaHumans, facial capture and Unreal Engine production pipelines.">
+<meta property="og:url" content="https://redspiderstudios.com/journal/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Red Spider Studios Journal",
+  "url": "https://redspiderstudios.com/journal/",
+  "description": "Working notes on previsualization, MetaHumans, facial capture and Unreal Engine production pipelines.",
+  "author": { "@type": "Person", "name": "Brian Rossney" },
+  "publisher": { "@type": "Organization", "name": "Red Spider Studios", "url": "https://redspiderstudios.com/" }
+}
+</script>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../_ds/modernist-4224a212-4f3c-4bb7-86df-8455b0e4c8d0/styles.css">
+  <script src="../_ds/modernist-4224a212-4f3c-4bb7-86df-8455b0e4c8d0/_ds_bundle.js"></script>
+  <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#0a0a0b"/><text x="26" y="118" font-family="Georgia,serif" font-size="58" fill="#e8132c">RSS</text></svg></template>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Teko:wght@400;500;600&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+  <style>
+    :root {
+      --color-bg: #0a0a0b;
+      --color-text: #f2f0ed;
+      --color-accent: #e8132c;
+      --color-accent-700: #ff5566;
+      --color-divider: color-mix(in srgb, #f2f0ed 18%, transparent);
+      --font-heading: "Bodoni Moda", Georgia, serif;
+      --font-label: "Teko", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, sans-serif;
+    }
+    body { margin:0; background:var(--color-bg); color:var(--color-text); font-family:var(--font-body); }
+    a { color:var(--color-accent-700); text-decoration:none; }
+    a:hover { color:var(--color-accent); text-decoration:underline; }
+    ::selection { background:var(--color-accent); color:#fff; }
+    .post-row:hover .post-title { color:var(--color-accent-700); }
+    @media (max-width: 760px) {
+      .post-row { grid-template-columns:1fr !important; row-gap:10px !important; }
+      .blog-nav { flex-wrap:wrap; row-gap:12px; justify-content:center; }
+    }
+  </style>
+</helmet>
+
+<div style="max-width:1000px; margin:0 auto; padding:0 clamp(20px,5vw,72px);">
+
+  <nav class="blog-nav" style="display:flex; align-items:center; justify-content:space-between; gap:24px; padding:22px 0; border-bottom:2px solid var(--color-divider);">
+    <a href="../" style="font-family:var(--font-label); font-size:22px; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-text);">Red Spider Studios</a>
+    <div style="display:flex; gap:22px; align-items:center;">
+      <a href="../#work" style="font-family:var(--font-label); font-size:19px; letter-spacing:0.1em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 72%, transparent);">Work</a>
+      <a href="/advertising/" style="font-family:var(--font-label); font-size:19px; letter-spacing:0.1em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 72%, transparent);">Advertising</a>
+      <a href="../#contact" style="font-family:var(--font-label); font-size:19px; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent-700);">Contact</a>
+    </div>
+  </nav>
+
+  <header style="padding:calc(2.5*28px) 0 calc(1.5*28px);">
+    <span style="display:block; font-family:var(--font-label); font-size:23px; line-height:23px; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent-700); margin:0 0 14px;">Journal</span>
+    <h1 style="font-family:var(--font-heading); font-size:clamp(38px,5.6vw,68px); line-height:1.1; letter-spacing:-0.015em; margin:0; max-width:24ch;">Notes from the previz bay.</h1>
+    <p style="font-size:17px; line-height:29px; color:color-mix(in srgb, var(--color-text) 78%, transparent); max-width:56ch; margin:24px 0 0;">Working notes on previsualization, MetaHumans, facial capture and building production pipelines in Unreal Engine — written from the chair, not the brochure.</p>
+  </header>
+
+  <section style="padding:0 0 calc(3*28px);">
+    <sc-for list="{{ posts }}" as="p" hint-placeholder-count="5">
+      <a class="post-row" href="{{ p.url }}" target="_blank" rel="noopener" style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,320px); gap:14px clamp(24px,5vw,64px); align-items:baseline; padding:30px 0; border-top:2px solid var(--color-divider); color:var(--color-text); text-decoration:none;">
+        <div>
+          <span style="display:block; font-family:var(--font-label); font-size:17px; letter-spacing:0.12em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent); margin:0 0 10px;">{{ p.topic }}</span>
+          <h2 class="post-title" style="font-family:var(--font-heading); font-size:clamp(22px,2.4vw,30px); line-height:1.25; letter-spacing:-0.01em; margin:0; transition:color .2s ease;">{{ p.title }}</h2>
+        </div>
+        <div>
+          <p style="font-size:15.5px; line-height:27px; color:color-mix(in srgb, var(--color-text) 75%, transparent); margin:0 0 12px;">{{ p.excerpt }}</p>
+          <span style="font-family:var(--font-label); font-size:18px; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent-700);">Read on LinkedIn →</span>
+        </div>
+      </a>
+    </sc-for>
+  </section>
+
+  <section style="border-top:2px solid var(--color-divider); padding:calc(2*28px) 0 calc(2.5*28px); display:flex; gap:clamp(24px,5vw,64px); flex-wrap:wrap; align-items:flex-start;">
+    <div style="flex:1 1 320px;">
+      <h2 style="font-family:var(--font-heading); font-size:26px; line-height:1.25; margin:0 0 12px;">More in the pipeline</h2>
+      <p style="font-size:15.5px; line-height:27px; color:color-mix(in srgb, var(--color-text) 75%, transparent); margin:0; max-width:48ch;">New pieces land here first. Follow along on LinkedIn, or get in touch if there's a workflow you want pulled apart.</p>
+    </div>
+    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <a href="https://linkedin.com" target="_blank" rel="noopener" style="display:inline-block; font-family:var(--font-label); font-size:19px; letter-spacing:0.1em; text-transform:uppercase; background:var(--color-accent); color:#fff; padding:14px 26px;">Follow on LinkedIn</a>
+      <a href="../#contact" style="display:inline-block; font-family:var(--font-label); font-size:19px; letter-spacing:0.1em; text-transform:uppercase; border:2px solid var(--color-text); color:var(--color-text); padding:12px 26px;">Get in touch</a>
+    </div>
+  </section>
+
+  <footer style="border-top:2px solid var(--color-divider); padding:calc(1.5*28px) 0; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+    <p style="font-size:13px; margin:0; color:color-mix(in srgb, var(--color-text) 60%, transparent);">© 2026 Red Spider Studios. All rights reserved.</p>
+    <div style="display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
+      <a href="/privacy/" style="font-size:13px;">Privacy Policy</a>
+      <a href="../" style="font-size:13px;">← Back to the studio</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  posts = [
+    { topic: 'Pipeline', title: 'MetaHumans in production: bringing the entire pipeline together', excerpt: 'How scan, mesh, rig, capture and retarget stop being separate steps and start being one working pipeline.', url: 'https://www.linkedin.com/pulse/metahumans-production-bringing-entire-pipeline-together-brian-rossney-wsqhf/' },
+    { topic: 'Animation', title: 'One performance, endless characters: why the IK Retargeter changed everything', excerpt: "How Unreal's IK Retargeter lets a single mocap performance drive any rig, and what that does to a schedule.", url: 'https://www.linkedin.com/pulse/one-performance-endless-characters-why-ik-retargeter-changed-rossney-qbjmf/' },
+    { topic: 'Performance', title: 'Beyond technology: why great facial capture still begins with performance', excerpt: 'The craft underneath the tools — facial capture is a performance problem before it is a technical one.', url: 'https://www.linkedin.com/pulse/beyond-technology-why-great-facial-capture-still-begins-brian-rossney-rf7yf/' },
+    { topic: 'Digital doubles', title: 'From scan to screen: how mesh to MetaHuman changed the digital double', excerpt: 'Turning a raw scan into a production-ready digital double, and where the old workflow used to break.', url: 'https://www.linkedin.com/pulse/from-scan-screen-how-mesh-metahuman-changed-digital-double-rossney-nlxwf/' },
+    { topic: 'Character', title: 'Why MetaHumans changed character creation', excerpt: 'What MetaHuman actually shifted for character work — and what it did not.', url: 'https://www.linkedin.com/pulse/why-metahumans-changed-character-creation-brian-rossney-yi6jf/' }
+  ];
+
+  renderVals() {
+    return { posts: this.posts };
+  }
+}
+</script>
+</body>
+</html>
