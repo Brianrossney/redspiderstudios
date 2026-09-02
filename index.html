@@ -292,7 +292,7 @@
       <span style="display:block; font-size:23px; line-height:23px; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent-700); font-family:var(--font-label); font-weight:500; margin:0 0 14px;">Selected work</span>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:2px; background:var(--color-divider); border:2px solid var(--color-divider);">
         <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
-          <div onMouseMove="{{ handleTilt }}" onMouseLeave="{{ resetTilt }}" data-cursor-hover style="background:var(--color-bg); padding:20px; display:flex; flex-direction:column; gap:14px; will-change:transform; transition:transform .1s ease-out;">
+          <a href="{{ p.href }}" onMouseMove="{{ handleTilt }}" onMouseLeave="{{ resetTilt }}" data-cursor-hover style="background:var(--color-bg); padding:20px; display:flex; flex-direction:column; gap:14px; color:var(--color-text); text-decoration:none; will-change:transform; transition:transform .1s ease-out;">
             <div style="width:100%; aspect-ratio:16/9; border:1px solid var(--color-divider);">
               <img src="{{ p.src }}" alt="{{ p.alt }}" style="width:100%;height:100%;object-fit:contain;display:block;" />
             </div>
@@ -301,7 +301,7 @@
               <h3 style="font-family:var(--font-heading); font-weight:var(--font-heading-weight); font-size:20px; line-height:26px; margin:4px 0 4px; letter-spacing:-0.01em;">{{ p.title }}</h3>
               <p style="font-size:14px; line-height:20px; margin:0; color:color-mix(in srgb, var(--color-text) 70%, transparent);">{{ p.client }}</p>
             </div>
-          </div>
+          </a>
         </sc-for>
       </div>
     </section>
@@ -502,7 +502,7 @@ class Component extends DCLogic {
     { id: 'proj-1', tag: 'Previz · Episodic', title: "'Wednesday' — Season 3", client: 'Previz for Netflix — in production', fit: 'contain', src: './assets/slot-proj-1.webp', alt: "'Wednesday' Season 3 previz still" },
     { id: 'proj-2', tag: 'Previz · Feature', title: "'Hivemind'", client: 'Previz package', fit: 'contain', src: './assets/slot-proj-2.webp', alt: "'Hivemind' previz still" },
     { id: 'proj-3', tag: 'Film · VFX', title: "'The Lady on the Hill'", client: 'Directing & post package', fit: 'contain', src: './assets/slot-proj-3.webp', alt: "'The Lady on the Hill' film still" },
-    { id: 'proj-4', tag: 'Original IP', title: "'Imogen's War Machine'", client: 'A chronological telling of WW2 machinery rolling into battle, from a spectator\u2019s POV', fit: 'contain', src: './assets/slot-proj-4.webp', alt: "'Imogen's War Machine' key art" },
+    { id: 'proj-4', tag: 'Original IP', title: "'Imogen's War Machine'", client: 'A chronological telling of WW2 machinery rolling into battle, from a spectator\u2019s POV', fit: 'contain', href: '/imogens-war-machine/', src: './assets/slot-proj-4.webp', alt: "'Imogen's War Machine' key art" },
     { id: 'proj-5', tag: 'Original IP', title: "'Ours'", client: 'Screenplay, game, graphic novel, animated series & novel', fit: 'contain', src: './assets/slot-proj-5.webp', alt: "'Ours' key art" },
     { id: 'proj-6', tag: 'Original IP', title: "'1976'", client: 'A tongue-in-cheek sci-fi thriller, built with Unreal Engine, MetaHuman and proprietary VFX tools', fit: 'contain', src: './assets/slot-proj-6.webp', alt: "'1976' key art" },
     { id: 'proj-7', tag: 'Film', title: "'Therapy'", client: "A psychiatrist infiltrates a killer\u2019s delusion to extract a confession", fit: 'contain', src: './assets/slot-proj-7.png', alt: "'Therapy' film poster" },
