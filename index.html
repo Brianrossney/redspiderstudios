@@ -195,7 +195,7 @@
       <div style="position:relative; width:100%; max-width:1200px;">
         <button type="button" onClick="{{ closeVideoModal }}" data-cursor-hover style="position:absolute; top:-46px; right:0; background:none; border:0; padding:0; cursor:pointer; font-family:var(--font-label); font-size:20px; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text);">Close ✕</button>
         <div onClick="{{ stopModalClose }}" style="position:relative; width:100%; aspect-ratio:2.35/1; overflow:hidden; background:#000; border:2px solid var(--color-divider);">
-          <iframe src="{{ videoModal }}" title="In the Valley of the Moon" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true" style="position:absolute; top:50%; left:0; width:100%; aspect-ratio:16/9; transform:translateY(-50%); border:0;"></iframe>
+          <iframe src="{{ videoModal }}" title="{{ videoModalTitle }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true" style="position:absolute; top:50%; left:0; width:100%; aspect-ratio:16/9; transform:translateY(-50%); border:0;"></iframe>
         </div>
       </div>
     </div>
@@ -510,14 +510,14 @@ class Component extends DCLogic {
   clients = ['RTÉ', 'BBC', '20th Century Studios', 'Pepsi', 'Sky', 'Disney', 'Netflix', 'Pfizer', 'Starbucks', 'Paddy Power', 'Invisalign'];
 
   projects = [
-    { id: 'proj-1', tag: 'Previz · Episodic', title: "'Wednesday' — Season 3", client: 'Previz for Netflix — in production', fit: 'contain', src: './assets/slot-proj-1.webp', alt: "'Wednesday' Season 3 previz still" },
+    { id: 'proj-1', tag: 'Previz · Episodic', title: "'Wednesday' — Season 3", client: 'Previz for Netflix — in production', fit: 'contain', video: '03u4xyj0TH4', src: './assets/slot-proj-1.webp', alt: "'Wednesday' Season 3 previz still" },
     { id: 'proj-2', tag: 'Previz · Feature', title: "'Hivemind'", client: 'Previz package', fit: 'contain', src: './assets/slot-proj-2.webp', alt: "'Hivemind' previz still" },
-    { id: 'proj-3', tag: 'Film · VFX', title: "'The Lady on the Hill'", client: 'Directing & post package', fit: 'contain', src: './assets/slot-proj-3.webp', alt: "'The Lady on the Hill' film still" },
+    { id: 'proj-3', tag: 'Film · VFX', title: "'The Lady on the Hill'", client: 'Directing & post package', fit: 'contain', video: 'gVH8lV7dz1A', src: './assets/slot-proj-3.webp', alt: "'The Lady on the Hill' film still" },
     { id: 'proj-4', tag: 'Original IP', title: "'Imogen's War Machine'", client: 'A chronological telling of WW2 machinery rolling into battle, from a spectator\u2019s POV', fit: 'contain', href: '/imogens-war-machine/', src: './assets/slot-proj-4.webp', alt: "'Imogen's War Machine' key art" },
     { id: 'proj-5', tag: 'Original IP', title: "'Ours'", client: 'Screenplay, game, graphic novel, animated series & novel', fit: 'contain', src: './assets/slot-proj-5.webp', alt: "'Ours' key art" },
     { id: 'proj-6', tag: 'Original IP', title: "'1976'", client: 'A tongue-in-cheek sci-fi thriller, built with Unreal Engine, MetaHuman and proprietary VFX tools', fit: 'contain', src: './assets/slot-proj-6.webp', alt: "'1976' key art" },
     { id: 'proj-7', tag: 'Film', title: "'Therapy'", client: "A psychiatrist infiltrates a killer\u2019s delusion to extract a confession", fit: 'contain', src: './assets/slot-proj-7.png', alt: "'Therapy' film poster" },
-    { id: 'proj-8', tag: 'Original IP', title: "'In the Valley of the Moon'", client: 'A multi award-winning film set in WW2', fit: 'contain', video: 'Kn76uCH3dFM', src: './assets/slot-proj-8.png', alt: "'In the Valley of the Moon' film poster" }
+    { id: 'proj-8', tag: 'Original IP', title: "'In the Valley of the Moon'", client: 'A multi award-winning film set in WW2', fit: 'contain', video: 'Kn76uCH3dFM', videoStart: 186, src: './assets/slot-proj-8.png', alt: "'In the Valley of the Moon' film poster" }
   ];
 
   articles = [
@@ -869,10 +869,11 @@ class Component extends DCLogic {
     const proj = this.projects.find(p => p.id === id);
     if (!proj || !proj.video) return;
     e.preventDefault();
-    this.setState({ videoModal: 'https://www.youtube-nocookie.com/embed/' + proj.video + '?rel=0&modestbranding=1&autoplay=1&start=186' });
+    const start = proj.videoStart ? '&start=' + proj.videoStart : '';
+    this.setState({ videoModal: 'https://www.youtube-nocookie.com/embed/' + proj.video + '?rel=0&modestbranding=1&autoplay=1' + start, videoModalTitle: proj.title });
   };
 
-  closeVideoModal = () => this.setState({ videoModal: null });
+  closeVideoModal = () => this.setState({ videoModal: null, videoModalTitle: null });
 
   stopModalClose = (e) => e.stopPropagation();
 
@@ -896,6 +897,7 @@ class Component extends DCLogic {
       articles: this.articles,
       articlesTeaser: this.articles.slice(0, 3),
       videoModal: this.state.videoModal || null,
+      videoModalTitle: this.state.videoModalTitle || 'Red Spider Studios',
       handleProjectClick: this.handleProjectClick,
       closeVideoModal: this.closeVideoModal,
       stopModalClose: this.stopModalClose,
