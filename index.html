@@ -193,7 +193,7 @@
   <sc-if value="{{ videoModal }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeVideoModal }}" style="position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.88); display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,64px);">
       <div style="position:relative; width:100%; max-width:1200px;">
-        <button type="button" onClick="{{ closeVideoModal }}" data-cursor-hover style="position:absolute; top:-46px; right:0; background:none; border:0; padding:0; cursor:pointer; font-family:var(--font-label); font-size:20px; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text);">Close ✕</button>
+        <button type="button" onClick="{{ closeVideoModal }}" data-cursor-hover style="position:fixed; top:clamp(12px,3vh,28px); right:clamp(16px,4vw,40px); background:none; border:0; padding:8px; cursor:pointer; font-family:var(--font-label); font-size:20px; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text);">Close ✕</button>
         <div onClick="{{ stopModalClose }}" style="position:relative; width:100%; aspect-ratio:2.35/1; overflow:hidden; background:#000; border:2px solid var(--color-divider);">
           <iframe src="{{ videoModal }}" title="{{ videoModalTitle }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true" style="position:absolute; top:50%; left:0; width:100%; aspect-ratio:16/9; transform:translateY(-50%); border:0;"></iframe>
         </div>
