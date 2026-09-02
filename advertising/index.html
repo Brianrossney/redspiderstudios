@@ -254,7 +254,7 @@
 <sc-if value="{{ activeEmbed }}" hint-placeholder-val="{{ false }}">
   <div onClick="{{ closeClip }}" style="position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.9); display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,64px);">
     <div style="position:relative; width:100%; max-width:1200px;">
-      <button type="button" onClick="{{ closeClip }}" style="position:fixed; top:clamp(12px,3vh,28px); right:clamp(16px,4vw,40px); background:none; border:0; padding:8px; cursor:pointer; font-family:var(--font-label); font-size:20px; letter-spacing:0.1em; text-transform:uppercase; color:#f2f0ed;">Close ✕</button>
+      <button type="button" onClick="{{ closeClip }}" style="position:fixed; z-index:10000; top:clamp(12px,3vh,28px); right:clamp(16px,4vw,40px); background:none; border:0; padding:8px; cursor:pointer; font-family:var(--font-label); font-size:20px; letter-spacing:0.1em; text-transform:uppercase; color:#f2f0ed;">Close ✕</button>
       <div onClick="{{ stopClipClose }}" style="position:relative; width:100%; aspect-ratio:16/9; background:#000;">
         <iframe src="{{ activeEmbed }}" title="{{ activeEmbedTitle }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true" style="position:absolute; inset:0; width:100%; height:100%; border:0;"></iframe>
       </div>
@@ -265,7 +265,7 @@
 <sc-if value="{{ activeClip }}" hint-placeholder-val="{{ false }}">
   <div onClick="{{ closeClip }}" style="position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.9); display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,64px);">
     <div style="position:relative; width:100%; max-width:1200px;">
-      <button type="button" onClick="{{ closeClip }}" style="position:fixed; top:clamp(12px,3vh,28px); right:clamp(16px,4vw,40px); background:none; border:0; padding:8px; cursor:pointer; font-family:var(--font-label); font-size:20px; letter-spacing:0.1em; text-transform:uppercase; color:#f2f0ed;">Close ✕</button>
+      <button type="button" onClick="{{ closeClip }}" style="position:fixed; z-index:10000; top:clamp(12px,3vh,28px); right:clamp(16px,4vw,40px); background:none; border:0; padding:8px; cursor:pointer; font-family:var(--font-label); font-size:20px; letter-spacing:0.1em; text-transform:uppercase; color:#f2f0ed;">Close ✕</button>
       <video onClick="{{ stopClipClose }}" src="{{ activeClip }}" controls="true" autoPlay="true" playsinline="true" controlsList="nodownload noremoteplayback" disablePictureInPicture="true" onContextMenu="{{ blockContextMenu }}" style="display:block; width:100%; aspect-ratio:16/9; background:#000;"></video>
     </div>
   </div>
@@ -291,9 +291,9 @@ class Component extends DCLogic {
   playlistRef = React.createRef();
 
   ytClips = [
-    { index: 0, title: 'Paddy Power', note: 'B2B commercial', id: 'oAmXXAhVPqU', thumb: 'https://i.ytimg.com/vi/oAmXXAhVPqU/hqdefault.jpg' },
-    { index: 1, title: 'Paddy Power Poker', note: 'Tournament campaign — IDI Award winner', id: 'Kqj7_FktWC0', thumb: 'https://i.ytimg.com/vi/Kqj7_FktWC0/hqdefault.jpg' },
-    { index: 2, title: 'Clearbraces', note: 'Brand commercial', id: 'I8t7K8Cxo10', thumb: 'https://i.ytimg.com/vi/I8t7K8Cxo10/hqdefault.jpg' }
+    { index: 0, title: 'Paddy Power', note: 'B2B commercial', id: 'oAmXXAhVPqU', thumb: 'https://i.ytimg.com/vi/oAmXXAhVPqU/maxresdefault.jpg' },
+    { index: 1, title: 'Paddy Power Poker', note: 'Tournament campaign — IDI Award winner', id: 'Kqj7_FktWC0', thumb: 'https://i.ytimg.com/vi/Kqj7_FktWC0/maxresdefault.jpg' },
+    { index: 2, title: 'Clearbraces', note: 'Brand commercial', id: 'I8t7K8Cxo10', thumb: 'https://i.ytimg.com/vi/I8t7K8Cxo10/maxresdefault.jpg' }
   ];
 
   openYtClip = (e) => {
