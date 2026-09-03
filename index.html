@@ -193,7 +193,7 @@
   <sc-if value="{{ videoModal }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeVideoModal }}" style="position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.88); display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,64px);">
       <div style="position:relative; width:100%; max-width:1200px;">
-        <button type="button" onClick="{{ closeVideoModal }}" data-cursor-hover style="position:fixed; top:clamp(12px,3vh,28px); right:clamp(16px,4vw,40px); background:none; border:0; padding:8px; cursor:pointer; font-family:var(--font-label); font-size:20px; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text);">Close ✕</button>
+        <button type="button" onClick="{{ closeVideoModal }}" data-cursor-hover style="position:fixed; z-index:10000; top:clamp(12px,3vh,28px); right:clamp(16px,4vw,40px); background:none; border:0; padding:8px; cursor:pointer; font-family:var(--font-label); font-size:20px; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text);">Close ✕</button>
         <div onClick="{{ stopModalClose }}" style="position:relative; width:100%; aspect-ratio:2.35/1; overflow:hidden; background:#000; border:2px solid var(--color-divider);">
           <iframe src="{{ videoModal }}" title="{{ videoModalTitle }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true" style="position:absolute; top:50%; left:0; width:100%; aspect-ratio:16/9; transform:translateY(-50%); border:0;"></iframe>
         </div>
@@ -331,6 +331,7 @@
         <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:28px; align-items:center;">
           <span class="tag tag-accent">In development</span>
           <a href="https://www.amazon.co.uk/dp/B0DDD8JTGH" target="_blank" rel="noopener" data-cursor-hover style="font-size:14px; color:var(--color-accent-700); font-weight:600;">Read issue one on Amazon →</a>
+          <a href="#" onClick="{{ openOursSeries }}" data-cursor-hover style="font-size:14px; color:var(--color-accent-700); font-weight:600;">Watch the series teaser →</a>
         </div>
         <hr style="height:2px; border:0; margin:28px 0; background:var(--color-divider);">
         <div class="book-row" style="display:flex; gap:20px; align-items:flex-start;">
@@ -873,6 +874,11 @@ class Component extends DCLogic {
     this.setState({ videoModal: 'https://www.youtube-nocookie.com/embed/' + proj.video + '?rel=0&modestbranding=1&autoplay=1' + start, videoModalTitle: proj.title });
   };
 
+  openOursSeries = (e) => {
+    e.preventDefault();
+    this.setState({ videoModal: 'https://www.youtube-nocookie.com/embed/Jia54NSPIvg?rel=0&modestbranding=1&autoplay=1', videoModalTitle: "'Ours' — animated series" });
+  };
+
   closeVideoModal = () => this.setState({ videoModal: null, videoModalTitle: null });
 
   stopModalClose = (e) => e.stopPropagation();
@@ -899,6 +905,7 @@ class Component extends DCLogic {
       videoModal: this.state.videoModal || null,
       videoModalTitle: this.state.videoModalTitle || 'Red Spider Studios',
       handleProjectClick: this.handleProjectClick,
+      openOursSeries: this.openOursSeries,
       closeVideoModal: this.closeVideoModal,
       stopModalClose: this.stopModalClose,
       subscribeMessage: this.state.subscribeMessage,
